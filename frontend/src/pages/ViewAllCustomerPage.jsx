@@ -35,7 +35,7 @@ const ViewAllCustomerPage = () => {
               customers={customers}
               onSuccess={() => {
                 setSelectedCustomer(null);
-                fetchCustomers(); // Refresh customer list after successful transfer
+                fetchCustomers();
               }}
             />
           </>

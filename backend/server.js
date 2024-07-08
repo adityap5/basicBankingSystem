@@ -74,7 +74,7 @@ app.get('/transfers', async (req, res) => {
   }
 });
 
-// Transfer money
+
 app.post('/transfer', async (req, res) => {
   const { fromCustomerId, toCustomerId, amount } = req.body;
 

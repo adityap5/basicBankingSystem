@@ -29,7 +29,7 @@ const TransferForm = ({ customers, onSuccess }) => {
         amount: parseFloat(amount)
       });
       onSuccess();
-      fetchTransfers(); // Refresh transfers after successful transfer
+      fetchTransfers(); 
     } catch (error) {
       console.error('Transfer failed:', error);
     }
