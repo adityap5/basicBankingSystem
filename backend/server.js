@@ -1,17 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+const mongoUrl = process.env.MONGODB_URL;
 
-mongoose.connect('mongodb://localhost:27017/simple-banking', {
+mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-
 
 const customerSchema = new mongoose.Schema({
   name: String,
@@ -28,12 +31,8 @@ const transferSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
-
-
-
 const Customer = mongoose.model('Customer', customerSchema);
 const Transfer = mongoose.model('Transfer', transferSchema);
-
 
 app.get('/create-dummy-data', async (req, res) => {
   const customers = [
@@ -52,11 +51,10 @@ app.get('/create-dummy-data', async (req, res) => {
   res.send('Dummy data created!');
 });
 
-
 app.get('/', async (req, res) => {
-  
   res.send("Server is running");
 });
+
 app.get('/customers', async (req, res) => {
   const customers = await Customer.find();
   res.json(customers);
@@ -112,7 +110,6 @@ app.post('/transfer', async (req, res) => {
     res.status(500).send('Transfer failed');
   }
 });
-
 
 const port = 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`));

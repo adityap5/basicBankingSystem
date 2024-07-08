@@ -101,7 +101,7 @@ const TransferForm = ({ customers, onSuccess }) => {
           {transfer.toCustomerName} ({transfer.toCustomerId})
         </td>
         <td className="border border-gray-200 px-2 py-1 md:px-4 md:py-2">
-          {transfer.amount}
+        ₹{transfer.amount}
         </td>
         <td className="border border-gray-200 px-2 py-1 md:px-4 md:py-2">
           {new Date(transfer.date).toLocaleString()}
